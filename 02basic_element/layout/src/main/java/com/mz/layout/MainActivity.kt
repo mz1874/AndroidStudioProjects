@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -64,6 +65,17 @@ class MainActivity : AppCompatActivity() {
         }
         chatView.setOnLongClickListener(longTimeClickListener);
 
+        /* 按钮开始 */
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            findViewById<TextView>(R.id.button_below_text_view).text = "按钮被点击了"
+        }
+
+        button.setOnLongClickListener {
+            findViewById<TextView>(R.id.button_below_text_view).text = "按钮被长时间点击了"
+            true
+        }
     }
 
     /*自定义的OnClickListener*/

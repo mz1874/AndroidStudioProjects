@@ -52,6 +52,7 @@
             android:layout_height="400dp">
             <TextView
                 android:id="@+id/chatView"
+                android:background="#BFADBF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
@@ -60,6 +61,18 @@
                 android:textColor="#000000">
             </TextView>
         </LinearLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:text="点击我"
+            android:layout_height="40dp">
+        </Button>
+        <TextView
+            android:id="@+id/button_below_text_view"
+            android:layout_width="match_parent"
+            android:text="当前文本会测试按钮是否被点击, 当你点击的时候,这个文本会变化"
+            android:layout_height="wrap_content">
+        </TextView>
     </LinearLayout>
 
 </LinearLayout>
