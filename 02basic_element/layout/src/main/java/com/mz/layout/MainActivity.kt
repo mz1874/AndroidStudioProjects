@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     private var isPaused = false
+
+
+    val arr = listOf("Apple", "Banana", "Orange", "Juice", "Bread")
+    var index = 0;
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +35,34 @@ class MainActivity : AppCompatActivity() {
 
 
         val chatView = findViewById<TextView>(R.id.chatView)
-
+        chatView.setLines(5);
+        chatView.movementMethod = ScrollingMovementMethod();
         chatView.setOnClickListener {
-            println("被点击了")
+            if (index == 0) {
+                chatView.text = arr[0] + "\r\n";
+            } else if(index < arr.size) {
+                var temp = "";
+                for (i in 0..index) {
+                    temp += arr[i];
+                    temp += "\r\n"
+                }
+                chatView.text = temp;
+            }
+            index++;
         }
+
+        val longTimeClickListener = object : View.OnLongClickListener {
+            override fun onLongClick(v: View?): Boolean {
+                chatView.text = ""
+                index =0;
+                return true;
+            }
+
+            override fun onLongClickUseDefaultHapticFeedback(v: View): Boolean {
+                return super.onLongClickUseDefaultHapticFeedback(v)
+            }
+        }
+        chatView.setOnLongClickListener(longTimeClickListener);
 
     }
 
